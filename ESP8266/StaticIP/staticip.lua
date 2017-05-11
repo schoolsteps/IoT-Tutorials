@@ -3,9 +3,9 @@ wifi.setmode(wifi.STATION)
 wifi.sta.config(SSID,PASSWORD)
 cfg = 
 {
-  ip = "192.168.1.41",
-  netmask = "255.255.255.0",
-  gateway = "192.168.1.1"
+  ip = "x.x.x.x",
+  netmask = "x.x.x.x",
+  gateway = "x.x.x.x"
 }
 
 wifi.sta.setip(cfg)
