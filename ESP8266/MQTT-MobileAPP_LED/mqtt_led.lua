@@ -14,19 +14,19 @@ tmr.alarm(1,10000, tmr.ALARM_SINGLE, function()
     end
 end) 
 
-function subscribe_ledState()
+function subscribe_led()
     m:subscribe(ENDPOINT_LED,0,function(client)
-        print("Subscribed to LED State")
+        print("Subscribed to topic ledstate")
     end
     )
 end
 
-function keep_alive()
-tmr.alarm(1,60000, tmr.ALARM_AUTO, function()
-    m:publish(ENDPOINT_LED,"alive",0,0,function(client)
-        print("Sent Keep Alive Ping")
-    end
-    )
+function publish_keepalive()
+    tmr.alarm(1,1000,tmr.ALARM_AUTO,function()
+           m:publish("aliveLED","alive",0,0,function(client)
+                print("Keep alive message")
+            end
+            )
     end
     )
 end
@@ -37,13 +37,13 @@ local status = gpio.LOW
 gpio.write(ledpin,status)
 
 function ledState(message)
- if message=="1" then
+   if message=="1" then
     status = gpio.HIGH
     gpio.write(ledpin,status)
- elseif message=="0" then
+   elseif message=="0" then
     status = gpio.LOW
     gpio.write(ledpin,status)
- end
+   end 
 end
 
 function mqttStart()
@@ -67,14 +67,14 @@ function mqttStart()
         print("In offline mode")
        end 
        )
-    m:on("connect",function(client)
+    m:on("connect", function(client)
         print("Connected")
-        subscribe_ledState()
-        keep_alive()
-    end    
-    )   
+        subscribe_led()
+        publish_keepalive()
+    end 
+    )
 
     m:lwt("/lwt","offline",0,0)
-
+   
     
 end
