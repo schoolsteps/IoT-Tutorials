@@ -10,7 +10,7 @@ tmr.alarm(1,10000, tmr.ALARM_SINGLE, function()
         print(myip)
         mqttStart()    
     else
-        print("Trying to connect to wifi")
+        print("Error in connecting to wifi")
     end
 end) 
 
