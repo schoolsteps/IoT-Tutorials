@@ -30,7 +30,7 @@ function sendDataToThingSpeak(temp,humi)
         print("Sending data to thingspeak....")
         http.post('http://api.thingspeak.com/update',
         'Content-Type: application/json\r\n',
-        '{"api_key":"QWVH45CKAPZGSV2B","field1":'..temp..',"field2":'..humi..'}',
+        '{"api_key":"Your Thing Speak API Key","field1":'..temp..',"field2":'..humi..'}',
         function(code, data)
             if (code < 0) then
             print("HTTP request failed")
