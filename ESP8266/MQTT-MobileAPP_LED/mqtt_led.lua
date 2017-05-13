@@ -39,7 +39,7 @@ gpio.write(ledpin,status)
 function ledState(message)
  if message=="1" then
     status = gpio.HIGH
-     gpio.write(ledpin,status)
+    gpio.write(ledpin,status)
  elseif message=="0" then
     status = gpio.LOW
     gpio.write(ledpin,status)
