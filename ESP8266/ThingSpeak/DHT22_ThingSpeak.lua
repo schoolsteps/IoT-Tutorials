@@ -12,7 +12,7 @@ tmr.alarm(1,5000,tmr.ALARM_AUTO,function()
        --     math.floor(humi),
        --       humi_dec
        -- ))
-        --float 
+        --float
         print("DHT temperature is: "..temp.."Humidity is: "..humi)
         sendDataToThingSpeak(temp,humi)
     elseif status == dht.ERROR_CHECKSUM then
